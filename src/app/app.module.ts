@@ -3,10 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SeguridadComponent } from './seguridad/seguridad.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SeguridadComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
