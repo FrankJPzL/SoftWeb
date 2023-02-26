@@ -15,6 +15,8 @@ import { OnlyNumbersDirective } from './directives/only-numbers.directive';
 import { NoPasteDirective } from './directives/no-paste.directive';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { MenuComponent } from './view/webpart/menu/menu.component';
+import { AgentecomercialComponent } from './view/agentecomercial/agentecomercial.component';
+import { VentasComponent } from './view/ventas/ventas.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { MenuComponent } from './view/webpart/menu/menu.component';
     DashboardComponent,
     OnlyNumbersDirective,
     NoPasteDirective,
-    MenuComponent
+    MenuComponent,
+    AgentecomercialComponent,
+    VentasComponent
   ],
   imports: [
     BrowserModule,
