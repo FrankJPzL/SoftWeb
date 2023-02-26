@@ -1,6 +1,7 @@
 const Urls = {    
     DASHBOARD: 'dashboard',
-    AGTCOMERCIAL: 'agentecomercial'
+    AGTCOMERCIAL: 'agentecomercial',
+    VENTAS: 'ventas',
    
   
   };

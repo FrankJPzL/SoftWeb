@@ -5,7 +5,7 @@ import { SeguridadComponent } from './view/seguridad/seguridad.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { AgentecomercialComponent } from './view/agentecomercial/agentecomercial.component';
-
+import { VentasComponent } from './view/ventas/ventas.component';
 const APP_ROUTES: Routes = [
 
   { path: '', component: SeguridadComponent },
@@ -16,7 +16,8 @@ const APP_ROUTES: Routes = [
     path: '', /*canActivate: [LoginGuardianService],*/ component: MainLayoutComponent,
     children: [
       { path: Urls.DASHBOARD, component: DashboardComponent },
-      { path: Urls.AGTCOMERCIAL, component: AgentecomercialComponent }
+      { path: Urls.AGTCOMERCIAL, component: AgentecomercialComponent },
+      { path: Urls.VENTAS, component: VentasComponent }
       
     ],
   }

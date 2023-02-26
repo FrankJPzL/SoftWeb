@@ -1,1 +1,206 @@
-<p>ventas works!</p>
+
+
+
+
+<div class="container-xl col-xl-12">
+    <div class="nk-content-inner">
+        <div class="nk-content-body">
+            <div class="nk-block-head nk-block-head-sm">
+                <div class="nk-block-between g-3">
+                    <div class="nk-block-head-content">
+                        <div class="nk-block-des text-soft">
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a class="breadcrumb-link">SISTEMA</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a class="breadcrumb-link">
+                                              VENTAS
+                                          </a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a class="breadcrumb-link"><strong style="font-weight: bold;">LISTADO DE VENTAS</strong></a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .nk-block-head-content -->
+                </div>
+                <!-- .nk-block-between -->
+            </div>
+            <!-- .nk-block-head -->
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- BUSQUEDA,  FILTROS y GRILLA-->
+<!-- ============================================================== -->
+
+
+<div id="accordion" class="accordion mb-4">
+  <div class="accordion-item">
+    <a href="#" class="accordion-head collapsed" data-toggle="collapse" data-target="#accordion-item-4">
+      <h6 class="title">Filtros de Búsqueda</h6>
+      <span class="accordion-icon"></span>
+    </a>
+    <div class="accordion-body collapse" id="accordion-item-4" data-parent="#accordion">
+      <div class="accordion-inner">
+
+        <form [formGroup]="formFiltros" autocomplete="off">
+          <div class="row mb-4">
+            <div class="col-sm-9">
+              <div class="form-group">
+                <div class="form-control-wrap">
+                  <input #txtAgente formControlName="txtAgente" id="txtAgente" type="text"
+                    class="form-control form-control form-control-outlined" >
+                  <label class="form-label-outlined" for="outlined-normal">Nombre del Agente Comercial</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="form-group">
+                <div class="form-control-wrap">
+
+                  <input  type="button" class="btn bg-info text-white" value="Buscar" name="boton" (click)="ListVentas()"
+
+                     />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                <div class="form-control-wrap">
+                  <input type="button" class="btn bg-info text-white" value="Nuevo" name="boton"  data-toggle="modal" data-target="#modalClienteCredito"
+
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nk-block">
+  <div class="card card-bordered card-stretch">
+    <div class="table-responsive col-xl-12">
+      <table id="tbListado"  class="table table-sm small text-dark table-bordered">
+        <thead>
+          <tr>
+
+           <!-- <th>ID</th>-->
+            <th>ID</th>   
+            <th>AGENTE</th>             
+            <th>PRODUCTO</th>   
+             <th>MONTO </th>         
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listVentas">
+                <td>{{item.id}}</td>
+                <td>{{item.agente}}</td>
+                <td>{{item.producto}}</td>
+                <td>{{item.monto}}</td>
+                 
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<div [ngStyle]="{'display': showModalSuccess ? 'block' : 'none', 'opacity': 1}" class="modal fade" tabindex="-1">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <a class="close" data-dismiss="modal"><em class="icon ni ni-cross" ></em></a>
+    <div class="modal-body modal-body-lg text-center">
+      <div class="nk-modal">
+        <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-check bg-success"></em>
+        <h4 class="nk-modal-title">Mensaje</h4>
+        <div class="nk-modal-text">
+          <p class="lead">{{mensajeModal}}</p>
+        </div>
+        <div class="nk-modal-action">
+          <a class="btn btn-dim btn-outline-primary" (click)="OpenModalSuccess(false, '')">Aceptar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" style="height: 99%; width: 100%;"  class="modal fade" tabindex="-1" id="modalClienteCredito" data-backdrop="static" data-keyboard="false">
+<div class="modal-dialog modal-lg  modal-dialog-scrollable" role="document">
+  <div class="modal-content">
+    <a class="close" data-dismiss="modal">
+      <em class="icon ni ni-cross" ></em>
+    </a>
+    <div class="modal-body modal-body border border-info">
+      <div class="nk-modal">
+        <h4 class="nk-modal-title">Registrar</h4>
+        <hr>
+        <div class="nk-modal-text">
+          <div class="tab-content">
+
+            <div class="table-responsive col-xl-12">
+              <form [formGroup]="formVentas">
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label style="margin-bottom: 2px">Agente Comercial</label>
+                    <select #slcAgente formControlName="slcAgente" id="slcAgente" name="slcAgente"
+                                    class="form-control form-control form-control-outlined">
+                                    <option value="0">[Seleccionar]</option>
+                                    <option *ngFor="let item of listAgentes" [value]="item.id" >{{item.apellidosnombres}}</option>
+                                  </select>
+                </div>                                        
+                </div>
+                <div class="form-row">                    
+                      <div class="form-group col-md-9">
+                        <label style="margin-bottom: 2px">Producto</label>
+                        <input  #txtproducto formControlName="txtproducto" id="txtproducto" type="text" name="txtproducto"
+                        class="form-control" autocomplete="off">
+                    </div>                    
+                  </div>
+                  <div class="form-row">                   
+                      <div class="form-group col-md-9">
+                        <label style="margin-bottom: 2px">Monto</label>
+                        <input  #txtmonto formControlName="txtmonto" id="txtmonto" type="text" name="txtmonto"
+                        class="form-control" autocomplete="off">
+                    </div>                    
+                  </div>
+               </form>
+            </div>
+          </div>
+        </div>
+        <div class="nk-modal-action">
+          <div  style="float: right;" >
+            <button type="button" class="btn btn-primary" value="Guardar" (click)="AddVentas()" >Guardar
+              <!-- <em class="icon ni ni-archived-fill"></em>-->
+             </button>
+             &nbsp;&nbsp;
+        <button  #btnCerrarModal id="btnCerrarModal"  data-dismiss="modal" type="button" class="btn btn-primary" value="Guardar">Cancelar
+          <!-- <em class="icon ni ni-archived-fill"></em>-->
+         </button>
+
+        </div>
+        </div>
+
+      </div>
+    </div><!-- .modal-body -->
+  </div>
+</div>
+</div>
+
+
+
