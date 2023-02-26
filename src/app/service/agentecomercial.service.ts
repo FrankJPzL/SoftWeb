@@ -45,6 +45,6 @@ export class AgentecomercialService {
     return this.http.post(`${this.baseUrl}/AgenteComercial/ListAgentes`, obj, this.httpOptions);
   
   }
-
+  
  
 }

@@ -19,7 +19,7 @@ export class AgentecomercialComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
   dtTrigger1: Subject<any> = new Subject();
-
+  mdlSuccessIsOpenAgente= false;
   listAgentes:any = [];
   constructor(private formBuilder: FormBuilder,
    private service:AgentecomercialService,
@@ -60,10 +60,27 @@ export class AgentecomercialComponent implements OnInit {
   AddAgente() {
     let dni = this.formAgenteComercial.controls.txtDni.value;
     let nombres = this.formAgenteComercial.controls.txNombres.value;
+    if(dni.trim() == ""){
+    alert("Dni es obligatorio");
+    return;
+    }
+    if(nombres.trim() == ""){
+      alert("Nombres es obligatorio");
+      return;
+    }
 
+    this.btnCerrarModal.nativeElement.click();
     this.service.postAddAgenteComercial(dni,nombres).subscribe((data:any) => {
       console.log(data);     
-     
+      if(data.codigo == 200){
+      this.OpenModalSuccess(true,data.resultado);
+      }
+      else{
+        alert(data.resultado);
+      }
+    },error=>{
+      console.log(error); 
+      alert(error.error.resultado);    
     });
   }
 
@@ -72,10 +89,25 @@ export class AgentecomercialComponent implements OnInit {
     
 
     this.service.postListAenteComercial(dni).subscribe((data:any) => {
-      console.log(data);     
-      this.listAgentes = data.resultado;
+      console.log(data);   
+      if(data.codigo == 200){
+        this.listAgentes = data.resultado;
+        }
+        else{
+          alert(data.resultado);
+        }  
+      
+    },error=>{
+      console.log(error); 
+      alert(error.error.resultado);    
     });
   }
 
+
+  showModalError: boolean = false;
+  
+  loading = true;
+
+ 
 
 }

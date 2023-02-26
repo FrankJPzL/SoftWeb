@@ -39,7 +39,7 @@ export class VentasComponent implements OnInit {
       txtmonto: new FormControl('')  
 
     });
-
+    this.formVentas.controls.slcAgente.setValue(0);
     this.ListAgente();
 
   }
@@ -63,10 +63,20 @@ export class VentasComponent implements OnInit {
     let monto = this.formVentas.controls.txtmonto.value;
     let idvendedor = 1;
 
+    if(this.listAgentes.length == 0){
+      alert("Es necesario, primero, registrar los agentes comerciales");
+      return;
+    }
 
+    this.btnCerrarModal.nativeElement.click();
     this.service.postAddVentas(idvendedor,idagente,producto,monto).subscribe((data:any) => {
       console.log(data);     
-     
+      if(data.codigo == 200)
+      this.OpenModalSuccess(true,data.resultado);
+      this.ListVentas();
+    },error=>{
+      console.log(error); 
+      alert(error.error.resultado);    
     });
   }
 
@@ -77,6 +87,9 @@ export class VentasComponent implements OnInit {
     this.serviceAgente.postListAenteComercial(dni).subscribe((data:any) => {
       console.log(data);     
       this.listAgentes = data.resultado;
+    },error=>{
+      console.log(error); 
+      alert(error.error.resultado);    
     });
   }
 
@@ -88,6 +101,12 @@ export class VentasComponent implements OnInit {
     this.service.postVentas(ventas).subscribe((data:any) => {
       console.log(data);     
       this.listVentas = data.resultado;
+      if(this.listVentas.length == 0){
+        alert("No existen Ventas");
+      }
+    },error=>{
+      console.log(error); 
+      alert(error.error.resultado);    
     });
   }
 
