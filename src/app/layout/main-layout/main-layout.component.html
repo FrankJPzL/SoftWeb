@@ -1,1 +1,115 @@
-<p>main-layout works!</p>
+<div class="nk-app-root">
+    <!-- main @s -->
+    <div class="nk-main">
+      <!-- sidebar @s -->
+      <div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
+        <div class="nk-sidebar-element nk-sidebar-head">
+          <div class="nk-sidebar-brand">
+            <a href="#" class="logo-link nk-sidebar-logo">
+              <img class="logo-light logo-img" src="./assets/images/logo.jpg" alt="logo" />
+              <img class="logo-dark logo-img" src="./assets/images/logo.jpg" alt="logo-dark" />
+              <img class="logo-small logo-img logo-img-small" src="./assets/images/logo.jpg" alt="logo-small" />
+            </a>
+          </div>
+          <div class="nk-menu-trigger mr-n2">
+            <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none compact-active" data-target="sidebarMenu"><em
+                class="icon ni ni-arrow-left"></em></a>
+            <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex compact-active"
+              data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+          </div>
+        </div>
+        <!-- .nk-sidebar-element -->
+        <div class="nk-sidebar-element">
+          <app-menu></app-menu> 
+        </div>
+        <!-- .nk-sidebar-element  -->
+      </div>
+      <!-- sidebar @e -->
+      <!-- wrap @s -->
+      <div class="nk-wrap">
+        <!-- main header @s -->
+        <div class="nk-header nk-header-fixed is-dark">
+          <div class="container-fluid">
+            <div class="nk-header-wrap">
+              <div class="nk-menu-trigger d-xl-none ml-n1">
+                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
+                    class="icon ni ni-menu"></em></a>
+              </div>
+              <div class="nk-header-brand d-xl-none">
+                <a href="#" class="logo-link">
+                 
+                </a>
+              </div>
+              <!-- .nk-header-brand -->
+              <div class="nk-header-search ml-3 ml-xl-0"> </div>
+              <!-- .nk-header-news -->
+              <div class="nk-header-tools">
+                <ul class="nk-quick-nav">
+                  <li class="dropdown user-dropdown">
+                    <a href="#" class="dropdown-toggle mr-n1" data-toggle="dropdown">
+                      <div class="user-toggle">
+                        <div class="user-avatar sm">
+                          <em class="icon ni ni-user-alt"></em>
+                        </div>
+                        <div class="user-info d-none d-xl-block">
+                          <!-- <div class="user-status text-white user-status-unverified">
+                            Tiempo De Sesión {{tiempo}}
+                          </div> -->
+                          <div class="user-name dropdown-indicator">
+                          
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                      <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                        <div class="user-card">
+                          <div class="user-avatar">
+                            <span></span>
+                          </div>
+                          <div class="user-info">
+                            <span class="lead-text"></span>
+                            <span class="sub-text"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="dropdown-inner">
+                        <ul class="link-list">
+                          <li>
+                            <!-- <a><em class="icon ni ni-password"></em><span>Fecha Expiración Contraseña
+                                <br>
+                                {{ getFechaCambioClave()}}</span></a> -->
+                                <a style="cursor: pointer"><em class="icon ni ni-signout"></em><span>Cerrar Sesión</span></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- .nk-header-wrap -->
+          </div>
+          <!-- .container-fliud -->
+        </div>
+        <!-- main header @e -->
+        <!-- content @s -->
+        <div class="nk-content">
+          <div class="container-fluid">
+            <div class="nk-content-inner">
+              <div class="nk-content-body">
+                <router-outlet></router-outlet>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content @e -->
+        <!-- footer @s -->
+       <!--  <app-footer></app-footer> -->
+        <!-- footer @e -->
+      </div>
+      <!-- wrap @e -->
+    </div>
+    <!-- main @e -->
+  </div>
+  
